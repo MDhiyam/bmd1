@@ -1,6 +1,9 @@
 import { Component, OnInit , inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { confirmPasswordValidator } from '../validators/confirm-password.validators';
+import { AuthService } from '../services/auth.service';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -26,8 +29,10 @@ export class RegisterComponent implements OnInit{
   }
 
   fb = inject(FormBuilder);
-
+  authservice = inject(AuthService);
   registerForm !: FormGroup;
+  toastr = inject(ToastrService);
+  router = inject(Router);
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
@@ -44,7 +49,17 @@ export class RegisterComponent implements OnInit{
   }
 
   register(){
-    console.log(this.registerForm.value);
+    this.authservice.registerService(this.registerForm.value)
+    .subscribe({
+      next:(res)=>{
+        this.toastr.success('User Created Successfully!');
+        this.registerForm.reset();
+        this.router.navigate(['/']);
+      },
+      error:(err)=>{
+        console.log(err);
+      }
+    })
   }  
 
 }
