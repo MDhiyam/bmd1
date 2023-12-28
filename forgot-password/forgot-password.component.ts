@@ -1,5 +1,7 @@
 import { Component , OnInit , inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../services/auth.service';
 
 
 @Component({
@@ -10,7 +12,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ForgotPasswordComponent implements OnInit{
 
   fb = inject(FormBuilder);
-
+  toastr = inject(ToastrService);
+  authService = inject(AuthService);
   forgotForm !: FormGroup;
 
   ngOnInit(): void {
@@ -20,9 +23,16 @@ export class ForgotPasswordComponent implements OnInit{
   }
 
   submit(){
-    console.log(this.forgotForm.value);
-
-    //Kindly add toastr message as email sent successfully please check your email
+    this.authService.forgotPasswordService(this.forgotForm.value)
+    .subscribe({
+      next:(res)=>{
+        this.toastr.success('Email sent successfully kindly check your email!');
+        this.forgotForm.reset();
+      },
+      error:(err)=>{
+        console.log(err);
+      }
+    })
   }
 
 }
