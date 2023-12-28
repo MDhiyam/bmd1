@@ -1,0 +1,68 @@
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-md-12 col-sm-12">
+                <div class="card shadow-lg border-0 p-3">
+                    <div class="card-body">
+                        <h1 class="text-center py-1 animate__animated animate__tada">Sign Up</h1>
+                        <form  action="" [formGroup]="registerForm">
+                            <div class="form-group input_group">
+                                <input type="text" placeholder="" autocomplete="off" formControlName="name">
+                                <label>Name</label>
+                                <i class="fa fa-user float-right"></i>
+                                <span class="text-danger" *ngIf="registerForm.hasError('required' , 'name') && registerForm.controls['name'].dirty">
+                                    Name is required.
+                                </span>
+                            </div>
+                            <div class="form-group input_group">
+                                <input type="email" placeholder="" autocomplete="off" formControlName="email">
+                                <label>Email</label>
+                                <i class="fa fa-envelope float-right"></i>
+                                <span class="text-danger" *ngIf="registerForm.hasError('required' , 'email') && registerForm.controls['email'].dirty">
+                                    Email is required.
+                                </span>
+                                <span class="text-danger" *ngIf="registerForm.hasError('email' , 'email')">
+                                    Invalid email format.
+                                </span>
+                            </div>
+                            <div class="form-group input_group">
+                                <div class="password_field">
+                                    <input [type]="changetype?'password' : 'text'" placeholder="" minlength="8" formControlName="password">
+                                    <label>Password</label>
+                                    <i class="fa fa-lock" [ngClass]="visible?'fa fa-lock':'fa fa-unlock'" (click)="viewPass()"></i>
+                                </div>
+                                <span class="text-danger" *ngIf="registerForm.hasError('required' , 'password') && registerForm.controls['password'].dirty">
+                                    Password is required.
+                                </span>
+                                <span class="text-danger" *ngIf="registerForm.hasError('minlength', 'password') && registerForm.controls['password'].dirty">
+                                    Password should contain atleast 8 characters.
+                                </span>
+                            </div>
+                            <div class="form-group input_group">
+                                <div class="password_field">
+                                    <input [type]="changetype1?'password' : 'text'" placeholder="" formControlName="confirmPassword">
+                                    <label>Confirm Password</label>
+                                    <i class="fa fa-lock" [ngClass]="visible1?'fa fa-lock':'fa fa-unlock'" (click)="viewPass1()"></i>
+                                </div>
+                                <span class="text-danger" *ngIf="registerForm.hasError('required' , 'confirmPassword') && registerForm.controls['confirmPassword'].dirty">
+                                    Confirm Password is required.
+                                </span>
+                                <span class="text-danger" *ngIf="registerForm.hasError('confirmPasswordValidator' , 'confirmPassword')">
+                                    Password didn't matched!.
+                                </span>
+                            </div>
+                            <div class="form-group pt-3">
+                                <button type="submit" class="btn btn-dark btn-lg btn-block rounded-pill" (click)="register()" [disabled]="registerForm.invalid" [class.disabled]="registerForm.invalid || registerForm.hasError('confirmPasswordValidator' , 'confirmPassword')">Sign Up</button>
+                            </div>
+                            <p class="text-center">Already have an account?
+                                <span>
+                                    <a href="javascript:void(0);" routerLink="/">Sign In!</a>
+                                </span>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

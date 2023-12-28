@@ -1,0 +1,49 @@
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-md-12 col-sm-12">
+                <div class="card shadow-lg border-0 p-3">
+                    <div class="card-body">
+                        <h1 class="text-center py-1 animate__animated animate__tada">Sign In</h1>
+                        <form  action="" [formGroup]="loginForm">
+                            <div class="form-group input_group">
+                                <input type="email" placeholder="" autocomplete="off" formControlName="email">
+                                <label>Email</label>
+                                <i class="fa fa-envelope float-right"></i>
+                                <span class="text-danger" *ngIf="loginForm.hasError('required' , 'email') && loginForm.controls['email'].dirty">
+                                    Email is required.
+                                </span>
+                                <span class="text-danger" *ngIf="loginForm.hasError('email' , 'email')">
+                                    Invalid email format.
+                                </span>
+                            </div>
+                            <div class="form-group input_group">
+                                <div class="password_field">
+                                    <input [type]="changetype?'password' : 'text'" placeholder="" formControlName="password">
+                                    <label>Password</label>
+                                    <i class="fa fa-lock" [ngClass]="visible?'fa fa-lock':'fa fa-unlock'" (click)="viewPass()"></i>
+                                </div>
+                                <span class="text-danger" *ngIf="loginForm.hasError('required' , 'password') && loginForm.controls['password'].dirty">
+                                    Password is required.
+                                </span>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-12">
+                                    <a href="javascript:void(0);" routerLink="/forgot" class="forgot_pass float-right">Forgot Password?</a>
+                                </div>
+                            </div>
+                            <div class="form-group pt-3">
+                                <button type="submit" class="btn btn-dark btn-lg btn-block rounded-pill" (click)="login()" [disabled]="loginForm.invalid" [class.disabled]="loginForm.invalid">Sign In</button>
+                            </div>
+                            <p class="text-center">Not registered yet?
+                                <span>
+                                    <a href="javascript:void(0);" routerLink="/register">Sign Up!</a>
+                                </span>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

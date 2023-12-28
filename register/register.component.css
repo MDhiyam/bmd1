@@ -1,0 +1,149 @@
+body{
+    font-family: "Poppins" , sans-serif;
+    background-color: #081b29;
+    min-height:100vh;
+    color:#fff;
+}
+a{
+    text-decoration: none;
+    color:#00FFFF;
+    font-weight: 600;
+}
+.container .col-lg-5{
+    margin:0 auto;
+}
+.container .card{
+    margin:10% 0;
+    border: 2px solid #00FFFF !important;
+    background: transparent;
+    animation: fadeIn ease 3s;
+    -webkit-animation: fadeIn ease 3s;
+    -moz-animation: fadeIn ease 3s;
+    -o-animation: fadeIn ease 3s;
+    -ms-animation: fadeIn ease 3s;
+}
+.card h1{
+    font-weight: 600;
+}
+@keyframes fadeIn{
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+}  
+@-moz-keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+}  
+@-webkit-keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+}
+@-o-keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+}
+@-ms-keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+}
+.input_group{
+    position: relative;
+    font-size:16px;
+}
+.input_group{
+    margin-top:30px;
+}
+.input_group input{
+    background:transparent;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #fff;
+    width: 100%;
+    display: block;
+    font-size: 18px;
+    font-weight: 400;
+    color: #fff;
+    padding:10px 0;
+}
+.input_group input:focus + label,
+.input_group input:not(:placeholder-shown) + label {
+  top:0px;
+  color: #00FFFF;
+}
+.input_group label{
+    position: absolute;
+    top:50%;
+    left: 0;
+    transform: translateY(-50%);  
+    font-size:18px;
+    font-weight: 400;
+    pointer-events: none;
+    transition:.2s ease-in-out;
+}
+.input_group input:focus ~ i{
+    color: #00FFFF;
+}
+.input_group input:invalid ~ i{
+    top:30px;
+}
+.input_group i{
+    position:absolute;
+    top:50%;
+    right:0;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+input[type="checkbox"]{
+    width:16px;
+    height:16px;
+    accent-color:#00FFFF;
+}
+.btn{
+    background: transparent;
+    border: 2px solid #00FFFF;
+    outline: none;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 600;
+    z-index: 1;
+    position: relative;
+    width: 100%;
+    overflow:hidden;
+}
+.btn:before{
+    content: '';
+    position: absolute;
+    top:-100%;
+    left: 0;
+    width: 100%;
+    height:300%;
+    background: linear-gradient(#081b29 , #00FFFF , #081b29 , #00FFFF);
+    z-index: -1;
+    transition: .5s;
+}
+.btn:hover::before{
+    top: 0;
+}
+.disabled{
+    opacity:0.6;
+    cursor:not-allowed;
+}
