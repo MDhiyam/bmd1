@@ -1,5 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -17,8 +20,10 @@ export class LoginComponent implements OnInit{
   }
 
   fb = inject(FormBuilder);
-
+  authService = inject(AuthService);
   loginForm !: FormGroup;
+  toastr = inject(ToastrService);
+  router = inject(Router);
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -28,7 +33,17 @@ export class LoginComponent implements OnInit{
   }
 
   login(){
-    console.log(this.loginForm.value);
+    this.authService.loginService(this.loginForm.value)
+    .subscribe({
+      next:(res)=>{
+        this.toastr.success('User logged in Successfully!');
+        this.loginForm.reset();
+        this.router.navigate(['home']);
+      },
+      error:(err)=>{
+        console.log(err);
+      }
+    })
   }
 
 }
