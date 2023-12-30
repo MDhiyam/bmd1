@@ -37,6 +37,8 @@ export class LoginComponent implements OnInit{
     .subscribe({
       next:(res)=>{
         this.toastr.success('User logged in Successfully!');
+        localStorage.setItem("user_id", res.data_id);
+        // this.authService.isLoggeIn$.next(true);
         this.loginForm.reset();
         this.router.navigate(['home']);
       },
