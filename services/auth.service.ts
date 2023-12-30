@@ -24,4 +24,8 @@ export class AuthService {
   resetPasswordService(resetObj:any){
     return this.http.post<any>(`${apiUrls.authServiceApi}reset-password` , resetObj);
   }
+
+  getIsAuthenticated(): boolean {
+    return !!localStorage.getItem('user_id'); 
+  }
 }
